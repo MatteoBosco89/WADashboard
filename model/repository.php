@@ -9,11 +9,12 @@
         protected $connection;
 
         public function __construct(){
-            $this->db = new Connection($db_host, $db_user, $db_passwd, $db_name);
+            $settings = new Settings();
+            $this->db = new Connection($settings->getHost(), $settings->getUser(), $settings->getPass(), $settings->getName());
             $this->connection = $this->db->getLink();
         }
 
-        abstract public function persist();
+        abstract public function persist($obj);
 
         abstract public function getAll();
 

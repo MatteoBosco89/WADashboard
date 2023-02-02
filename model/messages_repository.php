@@ -15,7 +15,7 @@
             parent::__construct();
 	    }
 
-        public function persist(){
+        public function persist($contact){
 
         }
 

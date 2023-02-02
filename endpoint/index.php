@@ -3,7 +3,7 @@
     /**
      * Application Endpoint
      */
-
+    ini_set("display_errors", 1); // if production set 0
     session_start();
 
     if(!isset($_SESSION['isAuth'])) $_SESSION['isAuth'] = false;

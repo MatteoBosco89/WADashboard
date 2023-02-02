@@ -13,28 +13,36 @@
         }
 
         public function addcontact(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $cs = new ContactsService();
+            if($cs->createContact($_POST['name'], $_POST['surname'], $_POST['email'], $_POST['number'])) http_response_code(201);
+            else http_response_code(500);
         }
         public function removecontact(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $cs = new ContactsService();
+            if($cs->removeContact($_POST['id'])) http_response_code(204);
+            else http_response_code(500);
         }
         public function updatecontact(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $cs = new ContactsService();
+            if($cs->updateContact($_POST['id'], $_POST['name'], $_POST['surname'], $_POST['email'], $_POST['number'])) http_response_code(204);
+            else http_response_code(500);
         }
         public function getcontact(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $cs = new ContactsService();
+            $contact = $cs->getContact($_GET['id']);
+            if(!$contact) http_response_code(404);
+            else print(json_encode($contact));
         }
         public function getallcontacts(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $cs = new ContactsService();
+            $contacts = $cs->getAllContacts();
+            if(!$contacts) http_response_code(404);
+            else print(json_encode($contacts));
         }
         public function changestatuscontact(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $cs = new ContactsService();
+            if($cs->updateContactStatus($_POST['id'], $_POST['status'])) http_response_code(204);
+            else http_response_code(500);
         }
 
         public function updatemessage(){

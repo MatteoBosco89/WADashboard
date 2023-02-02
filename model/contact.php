@@ -15,8 +15,7 @@
         protected $status;
         protected $pending;
 
-        public function __construct($id, $name, $surname, $email, $number, $status=false, $pending=3){
-            $this->id = $id;
+        public function newContact($name, $surname, $email, $number, $status=false, $pending=3){
             $this->name = $name;
             $this->surname = $surname;
             $this->email = $email;
@@ -25,8 +24,18 @@
             $this->pending = $pending;
         }
 
-        public function activate(){
-            $this->status = true;
+        public function constructId($contact){
+            $this->id = $contact['id'];
+            $this->name = $contact['name'];
+            $this->surname = $contact['surname'];
+            $this->email = $contact['email'];
+            $this->number = $contact['number'];
+            $this->status = $contact['status'];
+            $this->pending = $contact['pending'];
+        }
+
+        public function updateStatus($status){
+            $this->status = $status;
         }
 
         public function getPending(){

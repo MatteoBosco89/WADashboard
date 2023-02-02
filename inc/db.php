@@ -17,7 +17,7 @@
             $this->connectDB();
         }
 
-        function connectDB(){
+        public function connectDB(){
 
             $this->link = mysqli_connect($this->db_host, $this->db_user, $this->db_passwd, $this->db_name);
         
@@ -29,14 +29,22 @@
                 printf("Error Occurred: %s\n", mysqli_error($this->link));
                 exit();
             }
+
+            $this->checkTables();
+
         }
         
-        function closeConnection(){
+        public function closeConnection(){
             return mysqli_close($this->link);
         }
 
-        function getLink(){
+        public function getLink(){
             return $this->link;
+        }
+
+        protected function checkTables(){
+            mysqli_query($this->link, "CREATE TABLE IF NOT EXISTS contacts(id INT(10) NOT NULL AUTO_INCREMENT, name VARCHAR(255), surname VARCHAR(255), email NOT NULL VARCHAR(255), number NOT NULL VARCHAR(255), status BOOLEAN, pending INT(3), PRIMARY KEY(id), UNIQUE(email, number))");
+            mysqli_query($this->link, "CREATE TABLE IF NOT EXISTS messages(id INT(10) NOT NULL AUTO_INCREMENT, message NOT NULL VARCHAR(255), PRIMARY KEY(id), UNIQUE(message))");
         }
         
     }

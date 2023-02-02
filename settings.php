@@ -7,14 +7,36 @@
  * telephone number
  */
 
-$db_host = "HOST";
-$db_name = "DB NAME";
-$db_user = "DB USERNAME";
-$db_passwd = "DB PASSWORD";
+class Settings{
 
-$whatsapp_api_token = "TOKEN";
+    protected $db_host = "127.0.0.1";
+    protected $db_name = "watest";
+    protected $db_user = "root";
+    protected $db_passwd = "";
 
-$telephone_number = "NUMBER";
+    protected $whatsapp_api_token = "TOKEN";
+
+    protected $telephone_number = "NUMBER";
+
+    public function getHost(){
+        return $this->db_host;
+    }
+
+    public function getName(){
+        return $this->db_name;
+    }
+
+    public function getUser(){
+        return $this->db_user;
+    }
+
+    public function getPass(){
+        return $this->db_passwd;
+    }
+
+}
+
+
 
 
 ?>
