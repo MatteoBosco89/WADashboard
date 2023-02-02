@@ -46,20 +46,25 @@
         }
 
         public function updatemessage(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $ms = new MessageService();
+            if($ms->updateMessage($_POST['id'], $_POST['message'])) http_response_code(204);
+            else http_response_code(500);
         }
         public function removemessage(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $ms = new MessageService();
+            if($ms->removeMessage($_POST['id'])) http_response_code(204);
+            else http_response_code(500);
         }
         public function addmessage(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $ms = new MessageService();
+            if($ms->createMessage($_POST['message'])) http_response_code(201);
+            else http_response_code(500);
         }
         public function getmessagelist(){
-            http_response_code(200);
-            print($this->request->getMethod());
+            $ms = new MessageService();
+            $messages = $ms->getAllMessages();
+            if(!$messages) http_response_code(404);
+            else print(json_encode($messages));
         }
 
         public function sendmessage(){

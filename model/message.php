@@ -9,9 +9,13 @@
         protected $id;
         protected $message;
 
-        public function __construct($id, $message){
-            $this->id = $id;
+        public function newMessage($message){
             $this->message = $message;
+        }
+
+        public function construcIt($message){
+            $this->id = $message['id'];
+            $this->message = $message['message'];
         }
 
         public function updateMessage($message){
